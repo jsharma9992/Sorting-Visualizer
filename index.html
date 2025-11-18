@@ -3,87 +3,73 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sorting Visualizer — Modern UI</title>
+  <title>Sorting Visualizer</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <h1>Sorting Visualizer</h1>
-    <div class="controls">
-      <label>
-        Algorithm
-        <select id="algorithm-select" aria-label="Select algorithm">
+  <div class="app">
+    <header class="header">
+      <h1 class="logo">Sorting Visualizer</h1>
+      <p class="tagline">Interactive visualizations of common sorting algorithms</p>
+    </header>
+
+    <section class="controls" aria-label="controls">
+      <div class="control-row">
+        <label for="algorithm">Algorithm</label>
+        <select id="algorithm" aria-label="Algorithm select">
           <option value="bubble">Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
           <option value="insertion">Insertion Sort</option>
           <option value="merge">Merge Sort</option>
           <option value="quick">Quick Sort</option>
-          <option value="heap">Heap Sort</option>
         </select>
-      </label>
+      </div>
 
-      <label>
-        Array Type
-        <select id="array-type" aria-label="Array type">
-          <option value="random">Random</option>
-          <option value="nearly-sorted">Nearly Sorted</option>
-          <option value="reversed">Reversed</option>
-        </select>
-      </label>
+      <div class="control-row">
+        <label for="size">Size</label>
+        <input id="size" type="range" min="10" max="200" value="60" />
+        <span id="size-value">60</span>
+      </div>
 
-      <label>
-        Size
-        <input id="array-size" type="range" min="10" max="200" value="60" aria-label="Array size" />
-      </label>
+      <div class="control-row">
+        <label for="speed">Speed</label>
+        <input id="speed" type="range" min="1" max="1000" value="300" />
+        <span id="speed-value">300ms</span>
+      </div>
 
-      <label>
-        Speed
-        <input id="speed" type="range" min="1" max="1000" value="200" aria-label="Animation speed (ms)" />
-      </label>
-
-      <button id="new-array">New Array</button>
-      <button id="start">Start</button>
-      <button id="pause">Pause</button>
-      <button id="step">Step</button>
-
-      <label class="theme-toggle">
-        <input type="checkbox" id="dark-toggle" /> Dark
-      </label>
-    </div>
-  </header>
-
-  <main class="main-grid">
-    <section id="visualizer" class="visual-area" tabindex="0" aria-label="Sorting visualization area">
-      <!-- bars will be injected here -->
-      <div id="bars" class="bars" role="img" aria-label="Array bars visualization"></div>
-      <div id="status" class="status" aria-live="polite"></div>
+      <div class="control-row actions">
+        <button id="newArray">Generate New Array</button>
+        <button id="start">Start</button>
+        <button id="pauseResume" disabled>Pause</button>
+        <button id="reset" disabled>Reset</button>
+      </div>
     </section>
 
-    <aside class="side-panel" aria-label="Algorithm details and controls">
-      <div class="panel-section">
-        <h2>Code Snippet</h2>
-        <pre id="code-snippet" class="code-block" tabindex="0"></pre>
-      </div>
+    <main class="main">
+      <div id="visual" class="visual" role="region" aria-label="sorting visualizer"></div>
 
-      <div class="panel-section">
-        <h2>Metrics</h2>
-        <ul id="metrics">
-          <li>Comparisons: <span id="metric-comparisons">0</span></li>
-          <li>Swaps: <span id="metric-swaps">0</span></li>
-          <li>Elapsed: <span id="metric-time">0ms</span></li>
-        </ul>
-      </div>
+      <aside class="sidebar">
+        <section class="metrics">
+          <h2>Metrics</h2>
+          <ul>
+            <li>Comparisons: <span id="comparisons">0</span></li>
+            <li>Swaps: <span id="swaps">0</span></li>
+            <li>Time: <span id="elapsed">0ms</span></li>
+          </ul>
+        </section>
 
-      <div class="panel-section">
-        <h2>Accessibility</h2>
-        <p>Use keyboard: Tab to controls, Enter to activate. Screen reader friendly labels included.</p>
-      </div>
-    </aside>
-  </main>
+        <section class="snippet">
+          <h2>Algorithm (pseudo)</h2>
+          <pre id="code">Select an algorithm to see pseudocode</pre>
+        </section>
+      </aside>
+    </main>
 
-  <footer class="footer">
-    <small>Built with modern JS — choose an algorithm and press Start. Accessible and responsive.</small>
-  </footer>
+    <footer class="footer">
+      <small>Built with modern JS — responsive & accessible.</small>
+    </footer>
+  </div>
 
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

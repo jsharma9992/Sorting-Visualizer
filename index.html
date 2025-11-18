@@ -1,106 +1,89 @@
-<!DOCTYPE html>
-
-
-
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Visualizer</title>
-
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sorting Visualizer — Modern UI</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <header class="topbar">
+    <h1>Sorting Visualizer</h1>
+    <div class="controls">
+      <label>
+        Algorithm
+        <select id="algorithm-select" aria-label="Select algorithm">
+          <option value="bubble">Bubble Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="merge">Merge Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="heap">Heap Sort</option>
+        </select>
+      </label>
 
-    <header>
-        <nav>
-            <div class="array-inputs">
-                <p>Size of the array:</p>
-                <input id="a_size" type="range" min=20 max=150 step=1 value=80>
-                <p>Speed of the algorithm:</p>
-                <input id="a_speed" type="range" min=1 max=5 step=1 value=4>
-                <button id="a_generate">Generate New Array!</button>
-            </div>
+      <label>
+        Array Type
+        <select id="array-type" aria-label="Array type">
+          <option value="random">Random</option>
+          <option value="nearly-sorted">Nearly Sorted</option>
+          <option value="reversed">Reversed</option>
+        </select>
+      </label>
 
-            <div class="header_right">
-                <p class="nav-heading">Sorting visualizer</p>
+      <label>
+        Size
+        <input id="array-size" type="range" min="10" max="200" value="60" aria-label="Array size" />
+      </label>
 
-                <div class="algos">
-                    <button >Bubble</button>
-                    <button >Selection</button>
-                    <button >Insertion</button>
-                    <button >Merge</button>
-                    <button >Quick</button>
-                    <button style="margin-right: 0px;">Heap</button>
-                </div>
-            </div>
+      <label>
+        Speed
+        <input id="speed" type="range" min="1" max="1000" value="200" aria-label="Animation speed (ms)" />
+      </label>
 
-        </nav>
-    </header>
+      <button id="new-array">New Array</button>
+      <button id="start">Start</button>
+      <button id="pause">Pause</button>
+      <button id="step">Step</button>
 
-    <section>
+      <label class="theme-toggle">
+        <input type="checkbox" id="dark-toggle" /> Dark
+      </label>
+    </div>
+  </header>
 
-        <div id="Info_Cont1">
-
-            <h3>TIME COMPLEXITY</h3>ms-appid:undefined
-
-            <div class="Complexity_Containers" id="Time_Complexity_Types_Container">
-
-                <div class="Pair_Definitions">
-                    <p class="Sub_Heading">Worst case:</p>
-                    <p id="Time_Worst"></p>
-                </div>
-                
-                <div class="Pair_Definitions">
-                    <p class="Sub_Heading">Average case:</p>
-                    <p id="Time_Average"></p>
-                </div>
-                
-                <div class="Pair_Definitions">
-                    <p class="Sub_Heading">Best case:</p>
-                    <p id="Time_Best"></p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div id="array_container">
-            
-        </div>
-
-        <div id="Info_Cont2">
-
-            <h3>SPACE COMPLEXITY</h3>
-
-            <div class="Complexity_Containers" id="Space_Complexity_Types_Container">
-
-                <div class="Pair_Definitions">
-                    <p class="Sub_Heading">Worst case:</p>
-                    <p id="Space_Worst"></p>
-                </div>
-                
-            </div>
-
-        </div>
-
+  <main class="main-grid">
+    <section id="visualizer" class="visual-area" tabindex="0" aria-label="Sorting visualization area">
+      <!-- bars will be injected here -->
+      <div id="bars" class="bars" role="img" aria-label="Array bars visualization"></div>
+      <div id="status" class="status" aria-live="polite"></div>
     </section>
 
-    <footer>
+    <aside class="side-panel" aria-label="Algorithm details and controls">
+      <div class="panel-section">
+        <h2>Code Snippet</h2>
+        <pre id="code-snippet" class="code-block" tabindex="0"></pre>
+      </div>
 
-    </footer>
+      <div class="panel-section">
+        <h2>Metrics</h2>
+        <ul id="metrics">
+          <li>Comparisons: <span id="metric-comparisons">0</span></li>
+          <li>Swaps: <span id="metric-swaps">0</span></li>
+          <li>Elapsed: <span id="metric-time">0ms</span></li>
+        </ul>
+      </div>
 
-    <script src="main.js"></script>   <!--This should be at the end of body and should be loaded before sorts.js-->
-    <script src="visualizations.js"></script>  <!--This should be loaded after main.js-->
+      <div class="panel-section">
+        <h2>Accessibility</h2>
+        <p>Use keyboard: Tab to controls, Enter to activate. Screen reader friendly labels included.</p>
+      </div>
+    </aside>
+  </main>
 
-    <script src="bubble_sort.js"></script>
-    <script src="selection_sort.js"></script>
-    <script src="insertion_sort.js"></script>
-    <script src="merge_sort.js"></script>
-    <script src="quick_sort.js"></script>
-    <script src="heap_sort.js"></script>
+  <footer class="footer">
+    <small>Built with modern JS — choose an algorithm and press Start. Accessible and responsive.</small>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
 </body>
-
-
 </html>
